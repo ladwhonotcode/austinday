@@ -1,0 +1,546 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    overflow:hidden;
+    position:relative;
+}
+
+/* =========================
+BACKGROUND STARS
+========================= */
+
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    overflow:hidden;
+    z-index:0;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation: twinkle 3s infinite;
+}
+
+/* =========================
+PAGES
+========================= */
+
+.birthday-page,
+.letter-page{
+    background: linear-gradient(to bottom, #021b3a, #0a4d8c);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
+
+.letter-page .star{
+    width:4px;
+    height:4px;
+}
+/* =========================
+CONTAINER
+========================= */
+
+.container{
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.title{
+    font-size:4rem;
+    margin-bottom:40px;
+    animation: glow 2s infinite alternate;
+}
+
+.subtitle{
+    margin-top:30px;
+    font-size:1.2rem;
+}
+
+/* =========================
+CAKE
+========================= */
+
+.cake{
+    position:relative;
+    width:250px;
+    height:300px;
+    margin:auto;
+}
+
+.layer{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:15px;
+    opacity:0;
+    animation-fill-mode:forwards;
+}
+
+.layer1{
+    width:250px;
+    height:70px;
+    background:#5dade2;
+    bottom:0;
+    animation:drop 1s ease forwards;
+}
+
+.layer2{
+    width:200px;
+    height:60px;
+    background:#85c1e9;
+    bottom:80px;
+    animation:drop 1s ease forwards;
+    animation-delay:1s;
+}
+
+.layer3{
+    width:150px;
+    height:50px;
+    background:#aed6f1;
+    bottom:150px;
+    animation:drop 1s ease forwards;
+    animation-delay:2s;
+}
+
+/* =========================
+CANDLE
+========================= */
+
+.candle{
+    position:absolute;
+    width:15px;
+    height:50px;
+    background:white;
+    left:50%;
+    top:20px;
+    transform:translateX(-50%);
+    z-index:10;
+    animation: dropCandle 4s ease forwards;
+    animation-delay: 0s;
+}
+
+.flame{
+    width:20px;
+    height:20px;
+    background:gold;
+    border-radius:50%;
+    position:absolute;
+    top:-18px;
+    left:-2px;
+    animation:flicker 0.2s infinite;
+    
+}
+
+/* =========================
+BUTTON
+========================= */
+
+.btn{
+    margin-top:40px;
+    padding:15px 30px;
+    border:none;
+    border-radius:30px;
+    background:#3498db;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#5dade2;
+    transform:scale(1.05);
+}
+
+/* =========================
+BALLOONS
+========================= */
+
+.balloon{
+    position:absolute;
+    bottom:-150px;
+    width:80px;
+    height:100px;
+    border-radius:50%;
+    animation: floatUp 12s linear infinite;
+    opacity:0.8;
+}
+
+.balloon::after{
+    content:'';
+    position:absolute;
+    width:2px;
+    height:80px;
+    background:white;
+    left:50%;
+    top:100px;
+}
+
+.blue1{
+    background:#5dade2;
+    left:10%;
+}
+
+.blue2{
+    background:#85c1e9;
+    left:80%;
+    animation-delay:3s;
+}
+
+.blue3{
+    background:#3498db;
+    left:50%;
+    animation-delay:6s;
+}
+
+/* =========================
+CONFETTI
+========================= */
+
+.confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    top:-20px;
+    animation:confettiFall linear infinite;
+}
+
+.c1{ left:10%; background:#fff; animation-duration:5s; }
+.c2{ left:20%; background:#5dade2; animation-duration:7s; }
+.c3{ left:35%; background:#aed6f1; animation-duration:6s; }
+.c4{ left:50%; background:#fff; animation-duration:8s; }
+.c5{ left:65%; background:#5dade2; animation-duration:5s; }
+.c6{ left:80%; background:#85c1e9; animation-duration:7s; }
+
+/* =========================
+LETTER PAGE
+========================= */
+
+.letter-container{
+    display:flex;
+    gap:50px;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+}
+
+/* =========================
+ENVELOPE
+========================= */
+
+.envelope{
+    position:relative;
+    width:470px;
+    height:350px;
+
+    background:#5dade2;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+    perspective: 1000px;
+}
+
+/* =========================
+TOP FLAP
+========================= */
+
+.top-flap{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:200px;
+
+    background:#3498db;
+
+    clip-path:polygon(0 0, 50% 100%, 100% 0);
+
+    transform-origin:top;
+
+    transition:1s ease;
+
+    z-index:4;
+}
+
+/* =========================
+LETTER
+========================= */
+
+.letter{
+    position:absolute;
+    width:85%;
+    max-height:290px;
+
+    background:white;
+    color:#1b1b1b;
+
+    left:50%;
+    bottom:0;
+    
+    transform-style:preserve-3d;
+    transform:translate(-50%, 300%);
+
+    border-radius:12px;
+    padding:25px;
+
+    transition:1s ease;
+
+    z-index:2;
+
+    overflow-y:auto;
+
+}
+
+/* Title */
+
+.letter h2{
+    margin-bottom:15px;
+    color:#0a4d8c;
+}
+
+/* Text */
+
+.letter p{
+    white-space: pre-wrap;
+}
+
+/* =========================
+OPEN ANIMATION
+========================= */
+
+.envelope.open .top-flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.open .letter{
+    transform:translate(-50%, -10%) scale(1.02);
+    padding-top: 5%;
+    animation:flipPage 0.8s ease;
+}
+
+
+/* =========================
+SPOTIFY
+========================= */
+
+.spotify{
+    width:350px;
+    padding:5px;
+    border-radius:18px;
+
+    background:linear-gradient(145deg, #5dade2, #3498db);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.25),
+        0 0 20px rgba(93,173,226,0.35);
+}
+
+/* =========================
+FIREWORKS
+========================= */
+
+.firework{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:white;
+    animation: explode 2s infinite;
+}
+
+.f1{
+    top:20%;
+    left:20%;
+}
+
+.f2{
+    top:30%;
+    left:70%;
+    animation-delay:1s;
+}
+
+.f3{
+    top:15%;
+    left:50%;
+    animation-delay:2s;
+}
+
+/* =========================
+ANIMATIONS
+========================= */
+
+@keyframes drop{
+    0%{
+        transform:translate(-50%, -300px);
+        opacity:0;
+    }
+    100%{
+        transform:translate(-50%, 0);
+        opacity:1;
+    }
+}
+
+@keyframes dropCandle{
+    0%{
+        transform: translate(-50%, -300px);
+        opacity:0;
+    }
+    100%{
+        transform: translate(-50%, 0);
+        opacity:1;
+    }
+}
+
+@keyframes flicker{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.1);
+    }
+}
+
+@keyframes glow{
+    from{
+        text-shadow:0 0 10px #85c1e9;
+    }
+    to{
+        text-shadow:0 0 25px #d6eaf8;
+    }
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0);
+    }
+    100%{
+        transform:translateY(-120vh);
+    }
+}
+
+@keyframes confettiFall{
+    0%{
+        transform:translateY(-10vh) rotate(0deg);
+    }
+    100%{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+@keyframes twinkle{
+    0%{
+        opacity:0.2;
+    }
+    50%{
+        opacity:1;
+    }
+    100%{
+        opacity:0.2;
+    }
+}
+
+@keyframes explode{
+    0%{
+        transform:scale(0);
+        opacity:1;
+        box-shadow:
+        0 0 #fff,
+        0 0 #5dade2,
+        0 0 #aed6f1;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:0;
+        box-shadow:
+        -50px -50px #fff,
+        50px -50px #5dade2,
+        0 50px #aed6f1;
+    }
+}
+
+@keyframes flipPage{
+    0%{
+        transform:translate(-50%, -10%) scale(1.02) rotateY(90deg);
+    }
+
+    100%{
+        transform:translate(-50%, -10%) scale(1.02) rotateY(0deg);
+    }
+}
+
+/* =========================
+MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px){
+
+    .letter-container{
+        flex-direction:column;
+        gap:25px;
+        padding:20px;
+    }
+
+    .letter{
+        max-height:265px;
+    }
+
+    .envelope{
+        width:95vw;
+        height:320px;
+    }
+
+    .spotify{
+        width:95vw;
+        height: 90px;
+    }
+
+    .spotify iframe{
+        height:140px;
+    }
+
+    .title{
+        font-size:2.4rem;
+        padding:0 10px;
+    }
+
+    .subtitle{
+        font-size:1rem;
+        padding:0 20px;
+        text-align:center;
+    }
+
+    .cake{
+        transform:scale(0.85);
+    }
+
+    .btn{
+        padding:14px 24px;
+        font-size:1rem;
+    }
+}
